@@ -1,7 +1,8 @@
 // IMPORT MODULES under test here:
 import { 
     greetUsersOverAge60,
-    greetUsers
+    greetUsers,
+    addAllAges
 } from '../functions.js';
 import data from './data.js';
 
@@ -86,12 +87,13 @@ test('greetUsersOverAge60', (expect) => {
     expect.deepEqual(actual, expected);
 });
 
-skip('addAllAges', (expect) => {
-    const expected = true;
+test('addAllAges', (expect) => {
+    const expected = 	
+    2125;
 
-    const actual = greetUsers(data);
+    const actual = addAllAges(data);
 
-    expect.equal(actual, expected);
+    expect.equal(actual, expected), 'test proves that function addAllAges returns the sum of the age property value for each data item.';
 });
 
 
