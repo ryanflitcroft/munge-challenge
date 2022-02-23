@@ -4,7 +4,9 @@ Output:
 */
 
 export function greetUsers(customers) {
-    return true;
+    return customers.map((item) => (
+        `Hello ${item.first_name} ${item.last_name}!`
+    ));
 }
 
 /* 
@@ -27,7 +29,7 @@ Output:
 */
 
 export function addAllAges(customers) {
-    return true;
+    return customers.reduce((acc, curr) => acc + curr.age, 0);
 }
 
 /* 
@@ -36,7 +38,9 @@ Output:
 */
 
 export function getAverageCoolFactor(customers) {
-    return true;
+    return customers.reduce((acc, curr) => {
+        return (acc + curr.cool_factor);
+    }, 0) / customers.length;
 }
 
 /* 
@@ -50,7 +54,12 @@ Output:
 */
 
 export function getTotalOfEachGender(customers) {
-    return true;
+    return customers.reduce((acc, curr) => {
+        acc[curr.gender]
+            ? acc[curr.gender]++
+            : acc[curr.gender] = 1;
+        return acc;
+    }, {});
 }
 
 /* 
@@ -64,7 +73,13 @@ Output:
 */
 
 export function getGenderBreakdownOfFordOwners(customers) {
-    return true;
+    return customers.filter((item) => item.car_make === 'Ford')
+        .reduce((acc, curr) => {
+            acc[curr.gender]
+                ? acc[curr.gender]++
+                : acc[curr.gender] = 1;
+            return acc;
+        }, {}); 
 }
 
 //////////////////////////////////////////////////////////
@@ -89,7 +104,22 @@ Output:
 */
 
 export function getGenderBreakdownOfEachCar(customers) {
-    return true;
+    return customers.reduce((acc, curr) => {
+        // does {acc} have property of **curr.make // ford** ?
+        acc[curr.car_make]
+            // if so, does acc.ford have property of **curr.gender // m/f/x** ??
+            ? acc[curr.car_make][curr.gender]
+                // if so, increment gender
+                ? acc[curr.car_make][curr.gender]++
+                // if not, it does now
+                : acc[curr.car_make][curr.gender] = 1
+            // if not, it should be a property called curr.make that is equal to {curr.gender}
+            : acc[curr.car_make] = {
+                [curr.gender]: 1
+            };
+
+        return acc;
+    }, {});
 }
 
 /* 
@@ -104,7 +134,12 @@ Output:
 
 
 export function getAllCoolFactorsOfEachCar(customers) {
-    return true;
+    return customers.reduce((acc, curr) => {
+        !acc[curr.car_make]
+            ? acc[curr.car_make] = [curr.cool_factor]
+            : acc[curr.car_make].push(curr.cool_factor);
+        return acc;
+    }, {});
 }
 
 /* 
@@ -117,7 +152,28 @@ Output:
 */
 
 export function getAverageCoolFactorOfEachCar(customers) {
-    return true;
+    const allCf = customers.reduce((acc, curr) => {
+        !acc[curr.car_make]
+            ? acc[curr.car_make] = [curr.cool_factor]
+            : acc[curr.car_make].push(curr.cool_factor);
+
+        return acc;
+    }, {});
+
+    const avgCf = Object.entries(allCf)
+        .reduce((acc, curr) => {
+
+            const currTotal = curr[1].reduce((acc, curr) => {
+                return (acc + curr);
+            }, 0);
+
+            const currAvg = currTotal / curr[1].length;
+
+            acc[curr[0]] = currAvg;
+            return acc;
+        }, {});
+
+    return avgCf;
 }
 
 
