@@ -152,7 +152,28 @@ Output:
 */
 
 export function getAverageCoolFactorOfEachCar(customers) {
-    return true;
+    const allCf = customers.reduce((acc, curr) => {
+        !acc[curr.car_make]
+            ? acc[curr.car_make] = [curr.cool_factor]
+            : acc[curr.car_make].push(curr.cool_factor);
+
+        return acc;
+    }, {});
+
+    const avgCf = Object.entries(allCf)
+        .reduce((acc, curr) => {
+
+            const currTotal = curr[1].reduce((acc, curr) => {
+                return (acc + curr);
+            }, 0);
+
+            const currAvg = currTotal / curr[1].length;
+
+            acc[curr[0]] = currAvg;
+            return acc;
+        }, {});
+
+    return avgCf;
 }
 
 
