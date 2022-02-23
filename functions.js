@@ -104,7 +104,23 @@ Output:
 */
 
 export function getGenderBreakdownOfEachCar(customers) {
-    return true;
+    return customers.reduce((acc, curr) => {
+        // does {acc} have property of **curr.make // ford** ?
+        acc[curr.car_make]
+            // if so, does acc.ford have property of **curr.gender // m/f/x** ??
+            ? acc[curr.car_make][curr.gender]
+                // if so, increment gender
+                ? acc[curr.car_make][curr.gender]++
+                // if not, it does now
+                : acc[curr.car_make][curr.gender] = 1
+            // if not, it should be a property called curr.make that is equal to {curr.gender}
+            : acc[curr.car_make] = {
+                [curr.gender]: 1
+            };
+        
+        return acc;
+    }, {});
+    
 }
 
 /* 

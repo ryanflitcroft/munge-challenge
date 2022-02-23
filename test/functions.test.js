@@ -5,7 +5,8 @@ import {
     addAllAges,
     getAverageCoolFactor,
     getTotalOfEachGender,
-    getGenderBreakdownOfFordOwners
+    getGenderBreakdownOfFordOwners,
+    getGenderBreakdownOfEachCar
 } from '../functions.js';
 import data from './data.js';
 
@@ -133,10 +134,104 @@ test('getGenderBreakdownOfFordOwners', (expect) => {
     expect.deepEqual(actual, expected);
 });
 
-skip('getGenderBreakdownOfEachCar', (expect) => {
-    const expected = true;
+test('getGenderBreakdownOfEachCar', (expect) => {
+    const expected = 	
+    {
+        'Alfa Romeo': {
+            'Male': 1
+        },
+        'Audi': {
+            'Female': 1
+        },
+        'BMW': {
+            'Male': 1
+        },
+        'Buick': {
+            'Female': 1,
+            'Male': 1
+        },
+        'Cadillac': {
+            'Male': 1,
+            'Non-binary': 1
+        },
+        'Chevrolet': {
+            'Female': 1,
+            'Male': 3
+        },
+        'Chrysler': {
+            'Female': 1,
+            'Genderqueer': 1
+        },
+        'Dodge': {
+            'Female': 2,
+            'Male': 1
+        },
+        'Eagle': {
+            'Male': 1
+        },
+        'Ford': {
+            'Female': 1,
+            'Male': 2
+        },
+        'GMC': {
+            'Female': 2,
+            'Male': 2
+        },
+        'Infiniti': {
+            'Female': 1
+        },
+        'Jeep': {
+            'Female': 1
+        },
+        'Kia': {
+            'Male': 1
+        },
+        'Lexus': {
+            'Male': 1
+        },
+        'Mazda': {
+            'Male': 1
+        },
+        'Mercedes-Benz': {
+            'Female': 1
+        },
+        'Mercury': {
+            'Male': 1
+        },
+        'Mitsubishi': {
+            'Male': 1
+        },
+        'Oldsmobile': {
+            'Male': 1
+        },
+        'Peugeot': {
+            'Female': 1
+        },
+        'Pontiac': {
+            'Female': 1
+        },
+        'Porsche': {
+            'Female': 1,
+            'Male': 1
+        },
+        'Scion': {
+            'Female': 1
+        },
+        'Subaru': {
+            'Female': 1
+        },
+        'Toyota': {
+            'Bigender': 1,
+            'Female': 1,
+            'Male': 2
+        },
+        'Volvo': {
+            'Female': 1,
+            'Male': 1
+        }
+    };
 
-    const actual = greetUsers();
+    const actual = getGenderBreakdownOfEachCar(data);
 
     expect.equal(actual, expected);
 });
