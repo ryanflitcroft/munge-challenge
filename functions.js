@@ -38,10 +38,9 @@ Output:
 */
 
 export function getAverageCoolFactor(customers) {
-    const coolSum = customers.reduce((acc, curr) => {
+    return customers.reduce((acc, curr) => {
         return (acc + curr.cool_factor);
-    }, 0);
-    return coolSum / customers.length;
+    }, 0) / customers.length;
 }
 
 /* 
@@ -55,7 +54,12 @@ Output:
 */
 
 export function getTotalOfEachGender(customers) {
-    return true;
+    return customers.reduce((acc, curr) => {
+        acc[curr.gender]
+            ? acc[curr.gender]++
+            : acc[curr.gender] = 1;
+        return acc;
+    }, {});
 }
 
 /* 
