@@ -73,7 +73,13 @@ Output:
 */
 
 export function getGenderBreakdownOfFordOwners(customers) {
-    return true;
+    return customers.filter((item) => item.car_make === 'Ford')
+        .reduce((acc, curr) => {
+            acc[curr.gender]
+                ? acc[curr.gender]++
+                : acc[curr.gender] = 1;
+            return acc;
+        }, {}); 
 }
 
 //////////////////////////////////////////////////////////
