@@ -117,10 +117,9 @@ export function getGenderBreakdownOfEachCar(customers) {
             : acc[curr.car_make] = {
                 [curr.gender]: 1
             };
-        
+
         return acc;
     }, {});
-    
 }
 
 /* 
@@ -135,7 +134,12 @@ Output:
 
 
 export function getAllCoolFactorsOfEachCar(customers) {
-    return true;
+    return customers.reduce((acc, curr) => {
+        !acc[curr.car_make]
+            ? acc[curr.car_make] = [curr.cool_factor]
+            : acc[curr.car_make].push(curr.cool_factor);
+        return acc;
+    }, {});
 }
 
 /* 
